@@ -6,6 +6,7 @@ services:
       context: .
     volumes:
       - ..:/workspace
+      - ~/.aws:/root/.aws
       - ~/.ssh:/root/.ssh
       - ~/.gnupg:/root/.gnupg
       - ~/.gitconfig:/root/.gitconfig
