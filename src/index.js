@@ -8,11 +8,19 @@ const {
   first, switchMap, filter, map,
 } = require('rxjs/operators');
 const moment = require('moment');
+const winston = require('winston');
 
 const app = express();
 const cloudWatchLogs = new aws.CloudWatchLogs({ region: 'us-east-1' });
 const startQuery = bindNodeCallback((...args) => cloudWatchLogs.startQuery(...args));
 const getQueryResults = bindNodeCallback((...args) => cloudWatchLogs.getQueryResults(...args));
+const logger = winston.createLogger({
+  transports: [
+    new winston.transports.Console({
+      format: winston.format.simple(),
+    }),
+  ],
+});
 
 const pollQuery = (queryString) => (
   startQuery({
@@ -56,7 +64,10 @@ app.get('/api/sound-sync', (request, response) => {
     ),
   ]).subscribe(
     ([url, timestamp]) => response.send({ url, timestamp }),
-    () => response.sendStatus(500),
+    (error) => {
+      logger.error(error.message);
+      response.sendStatus(500);
+    },
   );
 });
 
