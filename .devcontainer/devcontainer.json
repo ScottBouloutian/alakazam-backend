@@ -1,0 +1,15 @@
+{
+	"name": "alakazam-backend",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "dev",
+	"workspaceFolder": "/workspace",
+	"settings": { 
+		"terminal.integrated.shell.linux": "/bin/zsh"
+	},
+	"postCreateCommand": "yarn",
+	"extensions": [
+		"dbaeumer.vscode-eslint",
+		"pkief.material-icon-theme",
+		"equinusocio.vsc-material-theme"
+	]
+}

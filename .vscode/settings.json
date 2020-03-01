@@ -1,0 +1,14 @@
+{
+  "editor.fontSize": 14,
+  "editor.fontFamily": "SauceCodePro Nerd Font",
+  "editor.tabSize": 2,
+  "workbench.colorTheme": "Material Theme Lighter",
+  "workbench.preferredDarkColorTheme": "Material Theme Darker",
+  "workbench.preferredHighContrastColorTheme": "Material Theme Lighter High Contrast",
+  "workbench.preferredLightColorTheme": "Material Theme Lighter",
+  "workbench.iconTheme": "material-icon-theme",
+  "terminal.integrated.fontFamily": "SauceCodePro Nerd Font",
+  "remote.containers.dotfiles.repository": "ScottBouloutian/dot-files",
+  "remote.containers.dotfiles.targetPath": "~/dot-files",
+  "remote.containers.dotfiles.installCommand": "~/dot-files/install.sh"
+}
