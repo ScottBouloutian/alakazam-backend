@@ -8,6 +8,8 @@
 	},
 	"postCreateCommand": "yarn",
 	"extensions": [
-		"dbaeumer.vscode-eslint"
+		"dbaeumer.vscode-eslint",
+		"pkief.material-icon-theme",
+		"equinusocio.vsc-material-theme"
 	]
 }
