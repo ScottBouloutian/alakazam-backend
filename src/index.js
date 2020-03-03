@@ -9,6 +9,7 @@ const {
 } = require('rxjs/operators');
 const moment = require('moment');
 const winston = require('winston');
+const cors = require('cors');
 
 const app = express();
 const cloudWatchLogs = new aws.CloudWatchLogs({ region: 'us-east-1' });
@@ -40,6 +41,7 @@ const pollQuery = (queryString) => (
 );
 
 app.use(express.json());
+app.use(cors());
 app.get('/api/sound-sync', (request, response) => {
   forkJoin([
     pollQuery([
