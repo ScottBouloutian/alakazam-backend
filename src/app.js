@@ -1,5 +1,4 @@
 const express = require('express');
-const serverless = require('serverless-http');
 const aws = require('aws-sdk');
 const {
   bindNodeCallback, timer, from, forkJoin,
@@ -8,20 +7,13 @@ const {
   first, switchMap, filter, map,
 } = require('rxjs/operators');
 const moment = require('moment');
-const winston = require('winston');
 const cors = require('cors');
+const logger = require('./logger');
 
 const app = express();
 const cloudWatchLogs = new aws.CloudWatchLogs({ region: 'us-east-1' });
 const startQuery = bindNodeCallback((...args) => cloudWatchLogs.startQuery(...args));
 const getQueryResults = bindNodeCallback((...args) => cloudWatchLogs.getQueryResults(...args));
-const logger = winston.createLogger({
-  transports: [
-    new winston.transports.Console({
-      format: winston.format.simple(),
-    }),
-  ],
-});
 
 const pollQuery = (queryString) => (
   startQuery({
@@ -73,4 +65,4 @@ app.get('/api/sound-sync', (request, response) => {
   );
 });
 
-module.exports.handler = serverless(app);
+module.exports = app;

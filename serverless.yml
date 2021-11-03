@@ -1,21 +1,7 @@
-service: alakazam-backend
-app: alakazam-backend
 org: scottbouloutian
-provider:
-  name: aws
-  runtime: nodejs12.x
-  iamRoleStatements:
-    - Effect: "Allow"
-      Action:
-        - "logs:StartQuery"
-      Resource: "arn:aws:logs:us-east-1:379925059984:log-group:/aws/lambda/sound-sync-prod-index:*"
-    - Effect: "Allow"
-      Action:
-        - "logs:GetQueryResults"
-      Resource: "*"
-functions:
-  alakazam-backend:
-    handler: src/index.handler
-    events:
-      - http: ANY /api
-      - http: ANY /api/{any+}
+app: alakazam
+name: backend
+component: 'express'
+inputs:
+  src: .
+  domain: ${app}-${name}-${stage}.scottbouloutian.com
