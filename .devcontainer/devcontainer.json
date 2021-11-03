@@ -1,15 +1,25 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.202.5/containers/javascript-node
 {
-	"name": "alakazam-backend",
-	"dockerComposeFile": "docker-compose.yml",
-	"service": "dev",
-	"workspaceFolder": "/workspace",
-	"settings": { 
-		"terminal.integrated.shell.linux": "/bin/zsh"
+	"name": "Node.js",
+	"runArgs": ["--init"],
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick a Node version: 16, 14, 12.
+		// Append -bullseye or -buster to pin to an OS version.
+		// Use -bullseye variants on local arm64/Apple Silicon.
+		"args": { "VARIANT": "16-bullseye" }
 	},
-	"postCreateCommand": "yarn",
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": {},
+
+	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-		"dbaeumer.vscode-eslint",
-		"pkief.material-icon-theme",
-		"equinusocio.vsc-material-theme"
-	]
+		"dbaeumer.vscode-eslint"
+	],
+
+	"forwardPorts": [3000],
+  	"postCreateCommand": "yarn install",
+	"remoteUser": "node"
 }
